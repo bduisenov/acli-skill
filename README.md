@@ -19,7 +19,7 @@ Claude Code plugin that wraps the [Atlassian CLI](https://developer.atlassian.co
 
 ```
 /plugin marketplace add bduisenov/acli-skill
-/plugin install acli@bduisenov-acli-skill
+/plugin install acli@acli-skill
 ```
 
 ## Usage
