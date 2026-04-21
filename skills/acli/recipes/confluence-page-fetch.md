@@ -19,7 +19,7 @@ acli 1.3.18 has no keyword search for pages — this recipe is ID-driven only. S
 
 1. **Normalize input to a page ID.**
 
-   If the input is a URL, extract `<id>` via regex `/pages/(\d+)(/|$)`. Reject input if no match — ask the user for the ID directly.
+   If the input is a URL, extract `<id>` via regex `/pages/(\d+)(?:[/?#]|$)`. Handles trailing slug, query string (e.g. `?focusedCommentId=`), or fragment (`#heading`). Reject input if no match — ask the user for the ID directly.
 
 2. **Fetch the page.**
 
