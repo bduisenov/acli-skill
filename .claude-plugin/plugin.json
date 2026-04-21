@@ -1,0 +1,12 @@
+{
+  "name": "acli",
+  "version": "0.1.0",
+  "description": "Atlassian CLI workflow recipes for Claude Code: read Jira work items and Confluence pages, with a write-gate protocol for safe writes.",
+  "author": {
+    "name": "Babur Duisenov"
+  },
+  "homepage": "https://github.com/bduisenov/acli-skill",
+  "repository": "https://github.com/bduisenov/acli-skill",
+  "license": "MIT",
+  "keywords": ["atlassian", "acli", "jira", "confluence", "rca", "workflow"]
+}
