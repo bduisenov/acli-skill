@@ -14,9 +14,15 @@ User asks to "break down", "list children of", or "show the work under" an epic,
 
    ```bash
    acli jira workitem view <EPIC-KEY> \
-     --fields "key,summary,status,description,assignee" \
+     --fields "key,summary,status,description,assignee,issuetype" \
      --json
    ```
+
+   **Issuetype guard.** If `issuetype.name != "Epic"`, stop and tell the user:
+
+   > `<EPIC-KEY>` is a `<issuetype>`, not an Epic. Epic breakdown only applies to Epics. Did you mean to fetch the ticket directly (`rca-fetch` recipe) or give an Epic key?
+
+   Do NOT proceed to step 2 for non-Epics — `parent = <STORY-KEY>` typically returns zero children and produces a misleading "empty epic" prompt.
 
 2. **List children via modern JQL `parent = <EPIC>`.**
 
