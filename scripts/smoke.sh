@@ -25,5 +25,13 @@ acli confluence page view --help | grep -q -- '--include-version'
 acli confluence page view --help | grep -q -- '--include-labels'
 acli confluence page view --help | grep -q -- '--include-direct-children'
 acli confluence page view --help | grep -q -- '--include-properties'
+acli jira auth login --help | grep -q -- '--web'
+acli jira auth login --help | grep -q -- '--site'
+acli jira auth login --help | grep -q -- '--email'
+acli jira auth login --help | grep -q -- '--token'
+acli confluence auth login --help | grep -q -- '--web'
+acli confluence auth login --help | grep -q -- '--site'
+acli confluence auth login --help | grep -q -- '--email'
+acli confluence auth login --help | grep -q -- '--token'
 
 echo "acli flag surface matches recipe assumptions (version $VER >= $MIN_VER)"

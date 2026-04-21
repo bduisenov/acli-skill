@@ -41,10 +41,16 @@ Out of scope for launch recipes; listed here so users can explore via `--help`.
 
 ## Auth
 
-- `acli auth status` — global auth state across products.
-- `acli auth login --web` — browser OAuth (recommended).
-- `acli auth login --site <site>.atlassian.net --email <you> --token` — token flow.
-- `acli auth logout` — global logout.
+Two distinct surfaces. Global (`acli auth ...`) is OAuth-only in 1.3.18 and has no flags on `login`. Product-scoped (`acli jira auth ...`, `acli confluence auth ...`) carries the `--web`/`--site`/`--email`/`--token` flag matrix. Recipes that hit Jira or Confluence require the matching product-scoped login.
+
+- `acli auth status` — global + per-product auth state. Output lists any products (Jira/Confluence) not yet authenticated.
+- `acli auth login <site>.atlassian.net` — global OAuth (positional site, no flags in 1.3.18).
+- `acli jira auth login --web` — Jira product OAuth (browser).
+- `acli jira auth login --site <site>.atlassian.net --email <you> --token < token.txt` — Jira token flow (stdin).
+- `acli confluence auth login --web` — Confluence product OAuth (browser).
+- `acli confluence auth login --site <site>.atlassian.net --email <you> --token < token.txt` — Confluence token flow (stdin).
+- `acli auth logout` — global logout (OAuth accounts).
+- `acli auth switch [--site <s>] [--email <e>]` — switch global account.
 
 ## Out of scope
 
