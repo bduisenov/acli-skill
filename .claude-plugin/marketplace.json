@@ -1,0 +1,17 @@
+{
+  "name": "acli-skill",
+  "metadata": {
+    "description": "Marketplace for the acli plugin."
+  },
+  "owner": {
+    "name": "Babur Duisenov"
+  },
+  "plugins": [
+    {
+      "name": "acli",
+      "source": "./",
+      "description": "Atlassian CLI workflow recipes for Claude Code.",
+      "version": "0.1.0"
+    }
+  ]
+}
