@@ -14,7 +14,7 @@ The protocol extends the same discipline to Confluence writes for symmetry. The 
 
 Jira: `workitem create | edit | transition | delete | archive | unarchive | assign | clone | link | create-bulk`.
 Jira comments: `workitem comment create | update | delete`.
-Confluence: `page create | update | delete` (once surfaced by acli), `blog create`, `space create | update | archive | restore`.
+Confluence (acli 1.3.18): `blog create`, `space create | update | archive | restore`. `page` exposes only `view` at 1.3.18 — no page writes exist yet.
 
 ## Steps (non-destructive writes)
 
@@ -38,7 +38,7 @@ The skill does NOT auto-append `-y` for the following. Copy-paste only.
 - `workitem delete`, `workitem archive`
 - `workitem create-bulk`
 - Any write targeting `--jql` or `--filter` (bulk by JQL / filter ID)
-- `space archive`, `space delete` (once surfaced)
+- `space archive` (irreversible without `space restore`)
 
 Ambiguous write requests (user did not use an explicit write verb) also fall back to copy-paste.
 

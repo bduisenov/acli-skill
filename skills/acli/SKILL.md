@@ -1,6 +1,6 @@
 ---
 name: acli
-description: Use when the user mentions Jira issue keys (RCA-*, PROJ-*, etc), Confluence pages, or the keywords jira/confluence/ticket/epic/sprint/wiki/page; also when `acli` is mentioned explicitly. Provides workflow recipes for reading Jira work items and Confluence pages via the Atlassian CLI. Writes are gated — auto-triggers fire for reads only; writes require an explicit verb (edit, create, update, transition, delete, assign, archive, clone, link).
+description: Use when the user mentions a Jira issue key (uppercase LETTERS-NUMBER pattern like RCA-123, PROJ-4567), the literal word `acli`, `jira`, or `confluence`, or phrases like "confluence page", "wiki page", "jira ticket", "epic breakdown", "sprint snapshot", "standup snapshot". Do NOT trigger on bare words "page", "ticket", "wiki", "sprint", "epic" without a Jira/Confluence/acli qualifier. Provides workflow recipes for reading Jira work items and Confluence pages via the Atlassian CLI. Writes are gated — auto-triggers fire for reads only; writes require an explicit verb (edit, create, update, transition, delete, assign, archive, clone, link).
 ---
 
 # acli — Atlassian CLI workflows

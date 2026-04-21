@@ -24,7 +24,7 @@ Claude Code plugin that wraps the [Atlassian CLI](https://developer.atlassian.co
 
 ## Usage
 
-The skill auto-triggers when your message contains a Jira issue key (e.g. `RCA-123`), the literal word `acli`, or any of `jira`, `confluence`, `ticket`, `epic`, `sprint`, `wiki`, `page`. You can also invoke explicitly via `/acli:acli`.
+The skill auto-triggers on a Jira issue key (e.g. `RCA-123`), the literal word `acli`, `jira`, or `confluence`, or qualified phrases like `confluence page`, `wiki page`, `jira ticket`, `epic breakdown`, `sprint snapshot`. Bare words (`page`, `ticket`, `sprint`) do NOT trigger — see [`skills/acli/SKILL.md`](skills/acli/SKILL.md) for the authoritative trigger list. Explicit invoke: `/acli:acli`.
 
 ### Recipes
 
