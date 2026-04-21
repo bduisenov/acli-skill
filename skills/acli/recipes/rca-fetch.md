@@ -34,11 +34,20 @@ User mentions an RCA-* key or asks for the context of an RCA ticket. Also applie
 
 3. **Fetch linked-issue headers (cap at 10).**
 
-   For each entry in step 1's `issuelinks` array, up to 10:
+   Before fetching, normalize the `issuelinks` array:
+
+   1. Extract the linked key from each entry (either `inwardIssue.key` or `outwardIssue.key`).
+   2. Deduplicate (two links may reference the same target via different relations).
+   3. Sort ascending by key (stable, deterministic output).
+   4. Take the first 10.
+
+   Then for each key:
 
    ```bash
    acli jira workitem view <LINKED-KEY> --fields "key,summary,status" --json
    ```
+
+   If the dedup'd set had more than 10 entries, surface `Showing 10 of <N> linked issues` in the render — never truncate silently.
 
 4. **Merge and present.**
 
@@ -53,7 +62,7 @@ User mentions an RCA-* key or asks for the context of an RCA ticket. Also applie
 
    <description, rendered as-is>
 
-   ## Linked issues
+   ## Linked issues <!-- append "(showing 10 of <N>)" iff truncated -->
 
    | Key | Summary | Status | Link type |
    |---|---|---|---|
