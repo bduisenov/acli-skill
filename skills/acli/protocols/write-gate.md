@@ -18,6 +18,13 @@ Confluence (acli 1.3.18): `blog create`, `space create | update | archive | rest
 
 ## Steps (non-destructive writes)
 
+0. **Precheck — route to carve-out if the composed command matches any of:**
+   - subcommand in the destructive list below, OR
+   - argv contains `--jql` or `--filter` (bulk by JQL / filter ID), OR
+   - `workitem edit` with `--jql` or `--filter` (bulk edit; a single `-y` silently applies to every matched item).
+
+   When any condition matches, skip the rest of this section and apply the **Destructive carve-out** flow instead (no `-y` injection, copy-paste only).
+
 1. **Compose the command with `-y/--yes` appended.** `acli` 1.3.18 prompts interactively on write subcommands by default, and the Claude Code `Bash` tool has no interactive stdin; without `-y` the call hangs until timeout.
 2. **Show the user** the exact command, including `-y`.
 3. **If the payload uses `--from-json`**, write it to a unique temp path:
