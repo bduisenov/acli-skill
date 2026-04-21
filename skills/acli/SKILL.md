@@ -1,6 +1,6 @@
 ---
 name: acli
-description: Use when the user mentions a Jira issue key (uppercase LETTERS-NUMBER pattern like RCA-123, PROJ-4567), the literal word `acli`, `jira`, or `confluence`, or phrases like "confluence page", "wiki page", "jira ticket", "epic breakdown", "sprint snapshot", "standup snapshot". Do NOT trigger on bare words "page", "ticket", "wiki", "sprint", "epic" without a Jira/Confluence/acli qualifier. Provides workflow recipes for reading Jira work items and Confluence pages via the Atlassian CLI. Writes are gated — auto-triggers fire for reads only; writes require an explicit verb (edit, create, update, transition, delete, assign, archive, clone, link).
+description: Use when the user mentions a Jira issue key (uppercase LETTERS-NUMBER pattern like PROJ-123, ABC-4567), the literal word `acli`, `jira`, or `confluence`, or phrases like "confluence page", "wiki page", "jira ticket", "epic breakdown", "sprint snapshot", "standup snapshot". Do NOT trigger on bare words "page", "ticket", "wiki", "sprint", "epic" without a Jira/Confluence/acli qualifier. Provides workflow recipes for reading Jira work items and Confluence pages via the Atlassian CLI. Writes are gated — auto-triggers fire for reads only; writes require an explicit verb (edit, create, update, transition, delete, assign, archive, clone, link).
 ---
 
 # acli — Atlassian CLI workflows
@@ -17,7 +17,7 @@ Wraps `acli` 1.3.18+ with four recipes plus two protocols.
 
 | Recipe | Trigger | File |
 |---|---|---|
-| RCA ticket fetch | user mentions an RCA key or asks for RCA context | `recipes/rca-fetch.md` |
+| Ticket fetch (full context) | user wants description + comments + linked issues for a Jira key | `recipes/ticket-fetch.md` |
 | Epic breakdown | user asks to break down / list children of an epic | `recipes/epic-breakdown.md` |
 | Sprint state | user asks for current sprint, standup snapshot | `recipes/sprint-state.md` |
 | Confluence page fetch | user gives a page ID or a Confluence URL | `recipes/confluence-page-fetch.md` |

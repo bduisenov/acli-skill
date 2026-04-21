@@ -18,10 +18,10 @@ parent = <EPIC-KEY>
 
 Both are documented so `epic-breakdown.md` can ask the user before retrying with the legacy field on empty results.
 
-## RCA tickets open
+## Open tickets in a project
 
 ```
-project = RCA AND statusCategory != Done ORDER BY created DESC
+project = <PROJECT> AND statusCategory != Done ORDER BY created DESC
 ```
 
 ## My open tickets
@@ -36,10 +36,10 @@ assignee = currentUser() AND statusCategory != Done
 project = <KEY> AND updated >= -7d
 ```
 
-## Linked incident tickets of an RCA
+## Issues linked to a given ticket
 
 ```
-issue in linkedIssues(<RCA-KEY>)
+issue in linkedIssues(<KEY>)
 ```
 
 ## Pull request-linked tickets

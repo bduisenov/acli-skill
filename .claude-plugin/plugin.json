@@ -8,5 +8,5 @@
   "homepage": "https://github.com/bduisenov/acli-skill",
   "repository": "https://github.com/bduisenov/acli-skill",
   "license": "MIT",
-  "keywords": ["atlassian", "acli", "jira", "confluence", "rca", "workflow"]
+  "keywords": ["atlassian", "acli", "jira", "confluence", "workflow"]
 }

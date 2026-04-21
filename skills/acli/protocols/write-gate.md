@@ -33,7 +33,7 @@ Confluence (acli 1.3.18): `blog create`, `space create | update | archive | rest
    /tmp/acli-payload-<topic>-<timestamp>.json
    ```
 
-   Example: `/tmp/acli-payload-rca123-edit-20260421-091533.json`. The unique path avoids the zsh `noclobber` silent-stale-file trap, where `cat > /tmp/foo.json <<EOF` is rejected if `/tmp/foo.json` already exists and the subsequent `--from-json` read picks up stale content. Show the file contents in the message before exec.
+   Example: `/tmp/acli-payload-proj123-edit-20260421-091533.json`. The unique path avoids the zsh `noclobber` silent-stale-file trap, where `cat > /tmp/foo.json <<EOF` is rejected if `/tmp/foo.json` already exists and the subsequent `--from-json` read picks up stale content. Show the file contents in the message before exec.
 
 4. **Ask**: `Execute? (y/N)`.
 5. **On `y`:** run the composed command. **On `n` or ambiguous:** abort and print the exact command as copy-pasteable text for manual run.

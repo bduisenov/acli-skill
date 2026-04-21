@@ -1,8 +1,8 @@
-# Recipe: RCA ticket fetch
+# Recipe: Ticket fetch (full context)
 
 ## Trigger
 
-User mentions an RCA-* key or asks for the context of an RCA ticket. Also applies to any Jira key when the user wants "full context" (body + comments + links).
+User mentions a Jira key and wants "full context" — description, comments, and linked issues in one rendered document. Typical uses: incident / RCA investigation, design review prep, catching up on a ticket before standup.
 
 ## Precondition
 

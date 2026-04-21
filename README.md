@@ -24,13 +24,13 @@ Claude Code plugin that wraps the [Atlassian CLI](https://developer.atlassian.co
 
 ## Usage
 
-The skill auto-triggers on a Jira issue key (e.g. `RCA-123`), the literal word `acli`, `jira`, or `confluence`, or qualified phrases like `confluence page`, `wiki page`, `jira ticket`, `epic breakdown`, `sprint snapshot`. Bare words (`page`, `ticket`, `sprint`) do NOT trigger — see [`skills/acli/SKILL.md`](skills/acli/SKILL.md) for the authoritative trigger list. Explicit invoke: `/acli:acli`.
+The skill auto-triggers on a Jira issue key (e.g. `PROJ-123`), the literal word `acli`, `jira`, or `confluence`, or qualified phrases like `confluence page`, `wiki page`, `jira ticket`, `epic breakdown`, `sprint snapshot`. Bare words (`page`, `ticket`, `sprint`) do NOT trigger — see [`skills/acli/SKILL.md`](skills/acli/SKILL.md) for the authoritative trigger list. Explicit invoke: `/acli:acli`.
 
 ### Recipes
 
 | Recipe | When it fires |
 |---|---|
-| [RCA ticket fetch](skills/acli/recipes/rca-fetch.md) | You mention an RCA / PROJ key and want context |
+| [Ticket fetch (full context)](skills/acli/recipes/ticket-fetch.md) | You want description + comments + linked issues for a Jira key |
 | [Epic breakdown](skills/acli/recipes/epic-breakdown.md) | You ask to break down or list children of an epic |
 | [Sprint state](skills/acli/recipes/sprint-state.md) | You ask for the current sprint or standup snapshot |
 | [Confluence page fetch](skills/acli/recipes/confluence-page-fetch.md) | You give a page ID or a Confluence URL |
