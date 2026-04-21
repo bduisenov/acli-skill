@@ -13,7 +13,7 @@ Claude Code plugin that wraps the [Atlassian CLI](https://developer.atlassian.co
 
 - [Atlassian CLI (`acli`)](https://developer.atlassian.com/cloud/acli/guides/how-to-get-started/) ≥ 1.3.18.
 - Claude Code with plugin support.
-- An authenticated session (`acli auth login --web`) before use.
+- An authenticated session before use. Run `acli jira auth login --web` and/or `acli confluence auth login --web` (whichever products you need). The bare `acli auth login` global OAuth is not sufficient on its own — Jira/Confluence recipes need product-scoped auth.
 
 ## Install
 
