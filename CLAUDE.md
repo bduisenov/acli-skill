@@ -29,8 +29,8 @@ scripts/smoke.sh            # acli --help parsing; catches upstream flag drift
 ## Install / Test Locally
 
 ```bash
-# In Claude Code:
-/plugin marketplace add /Users/hahn/workspace/4screen/topics/acli
+# In Claude Code, from this repo's checkout root:
+/plugin marketplace add $(pwd)
 /plugin install acli@acli-skill
 /reload-plugins
 ```
