@@ -6,12 +6,12 @@ Claude Code plugin that wraps the [Atlassian CLI](https://developer.atlassian.co
 
 - **Reads Jira work items** — fetch a ticket with its description, linked issues, and comments; break down an epic into its children; snapshot an active sprint.
 - **Reads Confluence pages** — fetch a page by ID or URL, including metadata (version, labels, space).
-- **Gates writes** — every Jira / Confluence write (`edit`, `create`, `transition`, `delete`, etc.) requires a skill-layer confirmation and injects `-y` to avoid hanging on acli's interactive prompt.
+- **Gates writes** — every Jira / Confluence write (`edit`, `create`, `transition`, `delete`, etc.) requires a skill-layer confirmation. The skill appends `--yes` on the subcommands that ask for confirmation, and nothing on those that don't (acli rejects the flag there), so calls never hang on an interactive prompt.
 - **Never logs in on your behalf** — the skill runs `acli auth status` but never `acli auth login`.
 
 ## Requirements
 
-- [Atlassian CLI (`acli`)](https://developer.atlassian.com/cloud/acli/guides/how-to-get-started/) ≥ 1.3.18.
+- [Atlassian CLI (`acli`)](https://developer.atlassian.com/cloud/acli/guides/how-to-get-started/) ≥ 1.3.36.
 - Claude Code with plugin support.
 - An authenticated session before use. Run `acli jira auth login --web` and/or `acli confluence auth login --web` (whichever products you need). The bare `acli auth login` global OAuth is not sufficient on its own — Jira/Confluence recipes need product-scoped auth.
 
@@ -40,7 +40,7 @@ The skill auto-triggers on a Jira issue key (e.g. `PROJ-123`), the literal word 
 - [`auth-preflight.md`](skills/acli/protocols/auth-preflight.md) — version gate, auth status, multi-site handling.
 - [`write-gate.md`](skills/acli/protocols/write-gate.md) — per-call confirmation for all writes.
 
-## Known limitations (acli 1.3.18)
+## Known limitations (acli 1.3.36)
 
 - **No Confluence page search.** `acli confluence page` only supports `view` by ID.
 - **Jira Cloud only.** No Data Center / Server support.

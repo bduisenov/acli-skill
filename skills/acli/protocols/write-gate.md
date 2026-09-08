@@ -12,21 +12,23 @@ The protocol extends the same discipline to Confluence writes for symmetry. The 
 
 ## Write subcommands covered
 
-Jira: `workitem create | edit | transition | delete | archive | unarchive | assign | clone | link | create-bulk`.
+Jira: `workitem create | edit | transition | delete | archive | unarchive | assign | clone | create-bulk`, `workitem link create | delete`.
 Jira comments: `workitem comment create | update | delete`.
-Confluence (acli 1.3.18): `blog create`, `space create | update | archive | restore`. `page` exposes only `view` at 1.3.18 — no page writes exist yet.
+Confluence (acli 1.3.36): `blog create`, `space create | update | archive | restore`. `page` exposes only `view` at 1.3.36 — no page writes exist yet.
 
 ## Steps (non-destructive writes)
 
 0. **Precheck — route to carve-out if the composed command matches any of:**
    - subcommand in the destructive list below, OR
    - argv contains `--jql` or `--filter` (bulk by JQL / filter ID), OR
-   - `workitem edit` with `--jql` or `--filter` (bulk edit; a single `-y` silently applies to every matched item).
+   - `workitem edit` with `--jql` or `--filter` (bulk edit; a single `--yes` silently applies to every matched item).
 
-   When any condition matches, skip the rest of this section and apply the **Destructive carve-out** flow instead (no `-y` injection, copy-paste only).
+   When any condition matches, skip the rest of this section and apply the **Destructive carve-out** flow instead (no `--yes` injection, copy-paste only).
 
-1. **Compose the command with `-y/--yes` appended.** `acli` 1.3.18 prompts interactively on write subcommands by default, and the Claude Code `Bash` tool has no interactive stdin; without `-y` the call hangs until timeout.
-2. **Show the user** the exact command, including `-y`.
+1. **Compose the command; look the subcommand up in the write matrix in `reference/flags.md`.**
+   - **Has `--yes`** (`edit`, `transition`, `assign`, `clone`, `unarchive`, `link create`, `link delete`): append `--yes`. Always the long form — `link` has no `-y` shorthand. acli otherwise asks for confirmation on stdin, and the Claude Code `Bash` tool has no interactive stdin, so the call hangs until timeout.
+   - **No `--yes`** (`workitem create`, `comment create | update | delete`, every Confluence write): append nothing — acli 1.3.36 rejects the flag as `unknown flag`. These subcommands do not ask for confirmation, but they prompt for content missing from argv, so every content field (`--summary`, `--body`, `--title`, …) must be passed as a flag or a file. If the call hangs anyway, acli prompted: abort and hand the command over as copy-paste.
+2. **Show the user** the exact command, including `--yes` where applied.
 3. **If the payload uses `--from-json`**, write it to a unique temp path:
 
    ```bash
@@ -40,7 +42,7 @@ Confluence (acli 1.3.18): `blog create`, `space create | update | archive | rest
 
 ## Destructive carve-out (no auto-exec)
 
-The skill does NOT auto-append `-y` for the following. Copy-paste only.
+The skill does NOT auto-append `--yes` for the following. Copy-paste only.
 
 - `workitem delete`, `workitem archive`
 - `workitem create-bulk`

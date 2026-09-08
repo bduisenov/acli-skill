@@ -5,13 +5,13 @@ description: Use when the user mentions a Jira issue key (uppercase LETTERS-NUMB
 
 # acli — Atlassian CLI workflows
 
-Wraps `acli` 1.3.18+ with four recipes plus two protocols.
+Wraps `acli` 1.3.36+ with four recipes plus two protocols.
 
 ## Workflow
 
 1. **Auth preflight first.** Follow `protocols/auth-preflight.md` — version gate, `acli auth status`, surface stderr verbatim on failure. The skill never runs `acli auth login`.
 2. **For reads**, jump straight to the relevant recipe below.
-3. **For writes**, follow `protocols/write-gate.md` — confirm at the skill layer, inject `-y`, fall back to copy-paste on destructive subcommands.
+3. **For writes**, follow `protocols/write-gate.md` — confirm at the skill layer, append `--yes` only where the subcommand accepts it, fall back to copy-paste on destructive subcommands.
 
 ## Recipes
 
