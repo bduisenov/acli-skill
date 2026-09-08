@@ -1,6 +1,6 @@
 # Reference: acli flags
 
-acli 1.3.18 has no `--output` switch. Structured output is controlled by per-subcommand boolean flags. Human default is unstructured text; recipes always pass `--json`.
+acli 1.3.36 has no `--output` switch. Structured output is controlled by per-subcommand boolean flags. Human default is unstructured text; recipes always pass `--json`.
 
 ## Common read flags
 
@@ -12,19 +12,32 @@ acli 1.3.18 has no `--output` switch. Structured output is controlled by per-sub
 | `jira sprint list-workitems` | ✓ | ✓ | ✓ (default: `key,issuetype,summary,assignee,priority,status`) | ✓ | ✓ | — |
 | `jira board list-sprints` | ✓ | ✓ | — | ✓ | ✓ | — |
 | `confluence page view` | ✓ | — | — | — | — | — |
-| `confluence blog list` | ✓ | ✓ | — | ✓ | ✓ | — |
-| `confluence space list` | ✓ | ✓ | — | ✓ | ✓ | — |
+| `confluence blog list` | ✓ | ✓ | — | — (cursor-based: `--cursor`) | ✓ | — |
+| `confluence space list` | ✓ | — | — | — | ✓ | — |
+
+`jira workitem view --fields` also accepts `*all`, `*navigable`, and a minus prefix to exclude a field (e.g. `*navigable,-comment`).
 
 ## Write flags (recipes apply via write-gate)
 
-| Subcommand | `-y/--yes` | `--from-json` | `--generate-json` |
-|---|---|---|---|
-| `jira workitem edit` | ✓ | ✓ | ✓ |
-| `jira workitem create` | ✓ | ✓ | ✓ |
-| `jira workitem transition` | ✓ | — | — |
-| `jira workitem delete` | ✓ | — | — |
-| `jira workitem archive` / `unarchive` | ✓ | — | — |
-| `jira workitem comment create` / `update` / `delete` | ✓ | — | — |
+`--yes` exists only on the subcommands where acli asks for confirmation, and the `-y` shorthand only on a subset of those. Write-gate appends the long form `--yes` where the matrix shows it and appends nothing where it does not — on the `—` rows acli rejects the flag as `unknown flag`.
+
+| Subcommand | `--yes` | `-y` | `--from-json` | `--generate-json` |
+|---|---|---|---|---|
+| `jira workitem edit` | ✓ | ✓ | ✓ | ✓ |
+| `jira workitem transition` | ✓ | ✓ | — | — |
+| `jira workitem assign` | ✓ | ✓ | — | — |
+| `jira workitem clone` | ✓ | ✓ | — | — |
+| `jira workitem delete` | ✓ | ✓ | — | — |
+| `jira workitem archive` / `unarchive` | ✓ | ✓ | — | — |
+| `jira workitem create-bulk` | ✓ | — | ✓ | ✓ |
+| `jira workitem link create` | ✓ | — | ✓ | ✓ |
+| `jira workitem link delete` | ✓ | — | ✓ | — |
+| `jira workitem create` | — | — | ✓ | ✓ |
+| `jira workitem comment create` / `update` / `delete` | — | — | — | — |
+| `confluence blog create` | — | — | ✓ | ✓ |
+| `confluence space create` / `update` / `archive` / `restore` | — | — | — | — |
+
+Subcommands without `--yes` have no confirmation prompt. They still prompt for content missing from the command line — `workitem create` for summary/description (`-e/--editor` opens an editor for them), `comment create` for the body — so write-gate requires every content field to be passed as a flag or a file.
 
 ## `confluence page view` — `--include-*` and `--body-format`
 

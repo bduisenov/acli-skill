@@ -81,4 +81,4 @@ One markdown document containing summary header, description, linked-issues tabl
 
 ## Write extension
 
-To edit the ticket, follow `protocols/write-gate.md` — e.g. `acli jira workitem edit --key <KEY> --labels '<label>' -y`.
+To edit the ticket, follow `protocols/write-gate.md` — e.g. `acli jira workitem edit --key <KEY> --labels '<label>' --yes`.
