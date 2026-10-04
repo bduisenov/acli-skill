@@ -5,7 +5,7 @@
 
 set -euo pipefail
 
-MIN_VER="1.3.36"
+MIN_VER="1.3.39"
 VER=$(acli --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
 [ -n "$VER" ] || { echo "smoke: cannot parse acli version from 'acli --version'" >&2; exit 1; }
 [ "$(printf '%s\n%s\n' "$MIN_VER" "$VER" | sort -V | head -1)" = "$MIN_VER" ] \
@@ -13,18 +13,22 @@ VER=$(acli --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
 
 fail() { echo "smoke: $*" >&2; exit 1; }
 
+# has FLAG — FLAG appears in stdin as a whole token, so `--include-version` does not match
+# `--include-versions`.
+has() { grep -qE -- "(^|[[:space:],])$1([[:space:],=]|\$)"; }
+
 # need FLAG CMD...   — FLAG must appear in `acli CMD... --help`.
 need() {
   local flag=$1 help; shift
   help=$(acli "$@" --help 2>&1)
-  grep -q -- "$flag" <<<"$help" || fail "expected '$flag' in 'acli $* --help'"
+  has "$flag" <<<"$help" || fail "expected '$flag' in 'acli $* --help'"
 }
 
 # forbid FLAG CMD... — FLAG must NOT appear. Fires when acli grows a flag the docs say is absent.
 forbid() {
   local flag=$1 help; shift
   help=$(acli "$@" --help 2>&1)
-  if grep -q -- "$flag" <<<"$help"; then
+  if has "$flag" <<<"$help"; then
     fail "unexpected '$flag' in 'acli $* --help' — update reference/flags.md and protocols/write-gate.md"
   fi
 }

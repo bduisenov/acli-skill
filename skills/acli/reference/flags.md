@@ -1,6 +1,6 @@
 # Reference: acli flags
 
-acli 1.3.36 has no `--output` switch. Structured output is controlled by per-subcommand boolean flags. Human default is unstructured text; recipes always pass `--json`.
+acli 1.3.39 has no `--output` switch. Structured output is controlled by per-subcommand boolean flags. Human default is unstructured text; recipes always pass `--json`.
 
 ## Common read flags
 
@@ -59,4 +59,4 @@ Subcommands without `--yes` have no confirmation prompt. They still prompt for c
 
 ## JQL-specific
 
-`jira workitem search --jql "…"` — quoting follows shell rules; prefer single quotes in bash. `--paginate` ignores `--limit`.
+`jira workitem search --jql "…"` — quoting follows shell rules; prefer single quotes in bash. Help does not say how `--paginate` and `--limit` interact on `search`; pass one or the other. (`comment list` help does say `--paginate` ignores `--limit`.)

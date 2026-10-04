@@ -10,11 +10,11 @@ Run this before the first `acli` call in a session. If it fails at any step, sto
    acli --version
    ```
 
-   Parse output of the form `acli version X.Y.Z-<channel>`. Assert `X.Y.Z >= 1.3.36`.
+   Parse output of the form `acli version X.Y.Z-<channel>`. Assert `X.Y.Z >= 1.3.39`.
 
    If acli is missing (`command not found`) or older, stop and print:
 
-   > `acli` must be installed and ≥ 1.3.36. Install guide: https://developer.atlassian.com/cloud/acli/guides/how-to-get-started/
+   > `acli` must be installed and ≥ 1.3.39. Install guide: https://developer.atlassian.com/cloud/acli/guides/how-to-get-started/
 
 2. **Auth check.**
 
@@ -34,11 +34,11 @@ Run this before the first `acli` call in a session. If it fails at any step, sto
 
 3. **Login guidance (skill does NOT run this).**
 
-   acli 1.3.36 has two distinct auth surfaces, and they do not substitute for each other:
+   acli 1.3.39 has two distinct auth surfaces, and they do not substitute for each other:
 
-   | Command | Scope | Flags in 1.3.36 |
+   | Command | Scope | Flags in 1.3.39 |
    |---------|-------|-----------------|
-   | `acli auth login <site>.atlassian.net` | Global OAuth | None — positional site only. |
+   | `acli auth login` | Global OAuth | None. |
    | `acli jira auth login` | Jira product | `--web`, `--site`, `--email`, `--token`. |
    | `acli confluence auth login` | Confluence product | `--web`, `--site`, `--email`, `--token`. |
 
@@ -54,7 +54,7 @@ Run this before the first `acli` call in a session. If it fails at any step, sto
    acli confluence auth login --site <site>.atlassian.net --email <you> --token < token.txt
    ```
 
-   The bare `acli auth login` global command is OAuth-only in 1.3.36 and accepts no `--web`/`--site`/`--email`/`--token` flags. It is not sufficient on its own for Jira/Confluence recipes; at least one product-scoped login is required.
+   The bare `acli auth login` global command is OAuth-only in 1.3.39 and accepts no `--web`/`--site`/`--email`/`--token` flags. Point the user at the product-scoped login for each product the recipes touch rather than at the global one.
 
    Wait for the user to confirm auth before re-running step 2.
 

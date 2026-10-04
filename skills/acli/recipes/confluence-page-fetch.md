@@ -13,7 +13,7 @@ User provides a Confluence page ID or a page URL. Common URL shapes:
 
 ## Limitation
 
-acli 1.3.36 has no keyword search for pages — this recipe is ID-driven only. See `reference/commands.md` for the full Confluence surface.
+acli 1.3.39 has no keyword search for pages — this recipe is ID-driven only. See `reference/commands.md` for the full Confluence surface.
 
 ## Steps
 

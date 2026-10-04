@@ -5,7 +5,7 @@ description: Use when the user mentions a Jira issue key (uppercase LETTERS-NUMB
 
 # acli — Atlassian CLI workflows
 
-Wraps `acli` 1.3.36+ with four recipes plus two protocols.
+Wraps `acli` 1.3.39+ with four recipes plus two protocols.
 
 ## Workflow
 

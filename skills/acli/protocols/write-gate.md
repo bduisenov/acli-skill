@@ -14,7 +14,7 @@ The protocol extends the same discipline to Confluence writes for symmetry. The 
 
 Jira: `workitem create | edit | transition | delete | archive | unarchive | assign | clone | create-bulk`, `workitem link create | delete`.
 Jira comments: `workitem comment create | update | delete`.
-Confluence (acli 1.3.36): `blog create`, `space create | update | archive | restore`. `page` exposes only `view` at 1.3.36 — no page writes exist yet.
+Confluence (acli 1.3.39): `blog create`, `space create | update | archive | restore`. `page` exposes only `view` at 1.3.39 — no page writes exist yet.
 
 ## Steps (non-destructive writes)
 
@@ -27,7 +27,7 @@ Confluence (acli 1.3.36): `blog create`, `space create | update | archive | rest
 
 1. **Compose the command; look the subcommand up in the write matrix in `reference/flags.md`.**
    - **Has `--yes`** (`edit`, `transition`, `assign`, `clone`, `unarchive`, `link create`, `link delete`): append `--yes`. Always the long form — `link` has no `-y` shorthand. acli otherwise asks for confirmation on stdin, and the Claude Code `Bash` tool has no interactive stdin, so the call hangs until timeout.
-   - **No `--yes`** (`workitem create`, `comment create | update | delete`, every Confluence write): append nothing — acli 1.3.36 rejects the flag as `unknown flag`. These subcommands do not ask for confirmation, but they prompt for content missing from argv, so every content field (`--summary`, `--body`, `--title`, …) must be passed as a flag or a file. If the call hangs anyway, acli prompted: abort and hand the command over as copy-paste.
+   - **No `--yes`** (`workitem create`, `comment create | update | delete`, every Confluence write): append nothing — acli 1.3.39 rejects the flag as `unknown flag`. These subcommands do not ask for confirmation, but they prompt for content missing from argv, so every content field (`--summary`, `--body`, `--title`, …) must be passed as a flag or a file. If the call hangs anyway, acli prompted: abort and hand the command over as copy-paste.
 2. **Show the user** the exact command, including `--yes` where applied.
 3. **If the payload uses `--from-json`**, write it to a unique temp path:
 
@@ -48,6 +48,8 @@ The skill does NOT auto-append `--yes` for the following. Copy-paste only.
 - `workitem create-bulk`
 - Any write targeting `--jql` or `--filter` (bulk by JQL / filter ID)
 - `space archive` (irreversible without `space restore`)
+- `board delete`, `sprint delete`
+- Any write subcommand not listed under "Write subcommands covered" above — copy-paste only until its `--help` has been checked and it is added to the matrix in `reference/flags.md`
 
 Ambiguous write requests (user did not use an explicit write verb) also fall back to copy-paste.
 
