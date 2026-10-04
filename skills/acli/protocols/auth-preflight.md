@@ -34,7 +34,7 @@ Run this before the first `acli` call in a session. If it fails at any step, sto
 
 3. **Login guidance (skill does NOT run this).**
 
-   acli 1.3.39 has two distinct auth surfaces, and they do not substitute for each other:
+   acli 1.3.39 has two auth surfaces:
 
    | Command | Scope | Flags in 1.3.39 |
    |---------|-------|-----------------|
