@@ -11,9 +11,9 @@ Claude Code plugin that wraps the [Atlassian CLI](https://developer.atlassian.co
 
 ## Requirements
 
-- [Atlassian CLI (`acli`)](https://developer.atlassian.com/cloud/acli/guides/how-to-get-started/) ≥ 1.3.36.
+- [Atlassian CLI (`acli`)](https://developer.atlassian.com/cloud/acli/guides/how-to-get-started/) ≥ 1.3.39.
 - Claude Code with plugin support.
-- An authenticated session before use. Run `acli jira auth login --web` and/or `acli confluence auth login --web` (whichever products you need). The bare `acli auth login` global OAuth is not sufficient on its own — Jira/Confluence recipes need product-scoped auth.
+- An authenticated session before use. Run `acli jira auth login --web` and/or `acli confluence auth login --web` (whichever products you need). Use the product-scoped login rather than the bare `acli auth login` global OAuth.
 
 ## Install
 
@@ -40,7 +40,7 @@ The skill auto-triggers on a Jira issue key (e.g. `PROJ-123`), the literal word 
 - [`auth-preflight.md`](skills/acli/protocols/auth-preflight.md) — version gate, auth status, multi-site handling.
 - [`write-gate.md`](skills/acli/protocols/write-gate.md) — per-call confirmation for all writes.
 
-## Known limitations (acli 1.3.36)
+## Known limitations (acli 1.3.39)
 
 - **No Confluence page search.** `acli confluence page` only supports `view` by ID.
 - **Jira Cloud only.** No Data Center / Server support.
