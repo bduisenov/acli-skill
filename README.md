@@ -55,6 +55,12 @@ Run the flag-surface smoke test to catch upstream drift:
 ./scripts/smoke.sh
 ```
 
+When a new acli release ships, diff its full `--help` tree against the pinned version:
+
+```bash
+./scripts/help-diff.sh
+```
+
 ## License
 
 MIT — see [`LICENSE`](LICENSE).
