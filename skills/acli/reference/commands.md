@@ -1,6 +1,6 @@
 # Reference: acli subcommands used by the skill
 
-Verified against acli 1.3.39-stable. Full help is available via `acli <group> <subcommand> --help`.
+Verified against acli 1.3.39-stable; the 1.3.40-stable `--help` tree is byte-identical. Full help is available via `acli <group> <subcommand> --help`.
 
 ## Jira
 

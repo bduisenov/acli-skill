@@ -24,6 +24,7 @@ skills/acli/
     flags.md                # per-subcommand flag matrix
     jql-snippets.md         # canonical JQL
 scripts/smoke.sh            # acli --help parsing; catches upstream flag drift
+scripts/help-diff.sh        # full --help tree diff, installed acli vs the pin (or a given version)
 ```
 
 ## Install / Test Locally
@@ -70,5 +71,5 @@ Pure `--help` parsing. No tenant I/O. Safe without credentials. Fails loudly on 
 
 - **Never leak private rule names** (`feedback_*`) into committed files. User rules are internal. Rationalize content from public principles.
 - **No tenant-specific references** (real Jira keys, Confluence page IDs, site names) in committed files. Use placeholders (`<EPIC-KEY>`, `<KEY>`, `<site>`).
-- **Version pin = `acli 1.3.39`.** Bump only when `smoke.sh` verifies new-version flag surface still satisfies recipes. Update README + SKILL.md together. To diff a release against the pin, older binaries are at `https://acli.atlassian.com/darwin/<X.Y.Z>-stable/acli_<X.Y.Z>-stable_darwin_arm64.tar.gz` (also `linux/`, `amd64`; some versions, e.g. 1.3.37/1.3.38, return 403 — release dates are in the `atlassian/homebrew-acli` tap history); dump `--help` for the same command list from both and `diff -ru`.
+- **Version pin = `acli 1.3.39`.** Bump only when `smoke.sh` verifies new-version flag surface still satisfies recipes. Update README + SKILL.md together. To diff a new release against the pin, install it and run `./scripts/help-diff.sh` (or `./scripts/help-diff.sh X.Y.Z` for another baseline); it fetches the old binary from `acli.atlassian.com`. Some versions, e.g. 1.3.37/1.3.38, return 403 — release dates are in the `atlassian/homebrew-acli` tap history. The official changelog lags badly (no entries after 1.3.15), so the binary is the source of truth.
 - **PR structure**: What / Why / How sections. Include a Test plan.
